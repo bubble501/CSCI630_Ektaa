@@ -4,15 +4,11 @@
 <title>Shitty stuff</title>
 </head>
 <body>
-	<h1>JavaScript ki body</h1>
+	<h1>External JavaScript</h1>
 	<p id="demo"> A paragraph. </p>
 	
 	<button type="button" onclick="myFunction()">Try it</button>
-	<script type="text/javascript">
-		function myFunction()
-		{
-			document.getElementById("demo").innerHTML = "This works too!!!";
-		}
-	</script>
+	<p><strong>NOTE:</strong>myFunction is stored in a separate file called "myScript.js"</p>
+	<script src="myScript.js"></script>
 </body>
 </html>
