@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Blockly Breakthrough stuff</title>
+	<script src="./js/blockly_compressed.js"></script>
+	<script src="./js/blocks_compressed.js"></script>
+	<script src="./js/phaser.min.js"></script>
+	<script src="./js/javascript_compressed.js"></script>
+	<script src="./js/msg/js/en.js"></script>
+</head>
+<body>
+	<div>
+		<h2>Blockly Workspace</h2>
+		<div id="blocklyDiv" style="height: 480px; width: 500px; border: solid 1px;"></div>
+		<button onclick="showCode()">Show JavaScript</button>
+		<button onclick="runCode()">Run JavaScript</button>
+		<xml id="toolbox" style="display: none">
+			<category name="Boolean">
+        	<block type="logic_compare"></block>
+        	<block type="logic_operation"></block>
+        	<block type="logic_negate"></block>
+        	<block type="logic_boolean"></block>
+        	<block type="logic_null"></block>
+        	<block type="logic_ternary"></block>
+      		</category>
+      	</xml>
+      	<script type="text/javascript">
+      		Blockly.inject(document.getElementById('blocklyDiv'),{toolbox: document.getElementById('toolbox')});
+      		
+      		function showCode() {
+      	      // Generate JavaScript code and display it.
+      	      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      	      var code = Blockly.JavaScript.workspaceToCode();
+      	      alert(code);
+      	    }
+
+      	    function runCode() {
+      	      // Generate JavaScript code and run it.
+      	      window.LoopTrap = 1000;
+      	      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+      	          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      	      var code = Blockly.JavaScript.workspaceToCode();
+      	      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      	      try {
+      	        eval(code);
+      	      } catch (e) {
+      	        alert(e);
+      	      }
+      	    }
+      	</script>
+      	
+	</div>
+</body>
+</html>
